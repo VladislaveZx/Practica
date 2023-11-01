@@ -5,11 +5,10 @@ bot = telebot.TeleBot('6033027757:AAFvSKCpxAgC1DJice-KY9HZMqs3Z1xLBGY')
 
 @bot.message_handler(commands=['start'])
 def start(message):
-
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn1 = types.KeyboardButton("👋 Поздороваться")
     markup.add(btn1)
-    bot.send_message(message.from_user.id, "👋 Привет! Я твой ФВТ-бот! ")
+    bot.send_message(message.from_user.id, "👋 Привет! Я твой ФВТ-бот! ", reply_markup=markup)
 
 
 @bot.message_handler(content_types=['text'])
@@ -27,11 +26,8 @@ def get_text_messages(message):
         bot.send_message(message.from_user.id, '❓ Задайте интересующий вопрос', reply_markup=markup)
 
 
-
     elif message.text == 'получить справку с места учебы':
         pass
-
-
 
 
     elif message.text == 'Перейти на сайт РГРТУ':
@@ -39,8 +35,6 @@ def get_text_messages(message):
         btn1 = types.InlineKeyboardButton(text='Сайт РГРТУ', url='http://rsreu.ru/')
         markup.add(btn1)
         bot.send_message(message.from_user.id, "По кнопке ниже можно перейти на сайт РГРТУ", reply_markup = markup)
-
-
 
 
     elif message.text == 'Узнать расписание занятий':
@@ -64,13 +58,11 @@ def get_text_messages(message):
         pass
 
 
-
     elif message.text == 'Перейти на портал дистанционного обучения':
         markup = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text='Сайт ЦДО', url='https://cdo.rsreu.ru/')
         markup.add(btn1)
         bot.send_message(message.from_user.id, "По кнопке ниже можно перейти на сайт ЦДО", reply_markup=markup)
-
 
 
     elif message.text == 'Перейти на портал образовательный портал РГРТУ':
