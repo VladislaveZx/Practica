@@ -1,1 +1,3 @@
-environment
+env
+Bot/bot_app/local_settings.py
+__pycache__
