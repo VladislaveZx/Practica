@@ -1,1 +1,0 @@
-keys_json = 'Bot/config/keys.json'
