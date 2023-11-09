@@ -17,10 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from office import views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('random/', views.StudentsInfo.as_view()),
-    path('student/<int:pk>', views.StudentsInfo.as_view())
 ]
