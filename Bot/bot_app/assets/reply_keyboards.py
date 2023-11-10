@@ -4,7 +4,7 @@ from aiogram.types.web_app_info import WebAppInfo
 
 hello_button = KeyboardButton(text="👋 Поздороваться")
 
-get_doc = KeyboardButton(text='Получить справку с места учебы', web_app=WebAppInfo(url='https://iamlukovkin.github.io/Practica/site/create_request.html'))
+get_doc = KeyboardButton(text='Получить справку с места учебы', web_app=WebAppInfo(url='https://iamlukovkin.github.io/Practica/'))
 show_graph = KeyboardButton(text='Узнать расписание занятий')
 rsreu_site = KeyboardButton(text='Перейти на сайт РГРТУ')
 cdo_site = KeyboardButton(text='Перейти на портал дистанционного обучения')
