@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/styles.css">
     <title>Деканат ФВТ</title>
 </head>
 <body>
-    <h1>Hello!</h1>
+    <div id="main">
+        <h1>Деканат Факультета вычислительной техники</h1>
+        <button id="get_doc">Получить справку с места учебы</button>
+        <button id="show_graph">Узнать расписание занятий</button>
+    </div>
+    <form id="doc_info">
+        <input type="text" placeholder="ФИО студента" id="username">
+        <input type="text" placeholder="Номер студенческого билета" id="studnum">
+        <input type="text" placeholder="Название организации" id="organisation">
+        <button id="sendquery">Отправить</button>
+    </form>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let get_doc = document.getElementById("get_doc");
+        let show_graph = document.getElementById("show_graph");
+
+        get_doc.addEventListener(
+            "click", () => {
+                document.getElementById("main").style.display = "none";
+                document.getElementById("doc_info").style.display = "block";
+            }
+        );
+    </script>
 </body>
 </html>
