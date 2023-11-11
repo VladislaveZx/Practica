@@ -1,12 +1,11 @@
-@font-face {
+/* @font-face {
     font-family: 'Mont';
-    src: url('fonts/Mont-Regular.woff2') format('woff2'), /* Формат WOFF2 */
-        url('fonts/Mont-Regular.woff') format('woff'); /* Формат WOFF */
-    font-weight: 600; /* Вес шрифта */
+    src: url('fonts/Mont-Regular.woff') format('woff'); 
+    font-weight: 600;
     font-style: normal; 
     padding: 0px;
     margin: 0px;
-}
+} */
 
 :root {
     --purple: #7700ff;
@@ -20,14 +19,18 @@
 }
 
 h1 {
-    font-family: 'Mont';
-    font-size: 72px;
+    font-family: 'Montserrat';
+    src: url("fonts/Montserrat/static/Montserrat-Regular.ttf") format("ttf");
+    font-weight: 600; /* Вес шрифта */
+    font-style: normal; 
+    font-size: 36px;
     margin-top: 10px;
     margin-bottom: 0px;
+    color: var(--black)
 }
 
 h2 {
-    font-family:'Times New Roman', Times, serif;
+    font-family:'Mont';
     font-style: italic;
     font-size: 63px;
     margin-top: 0px;
@@ -42,7 +45,7 @@ h3 {
 }
 
 h4 {
-    font-family: 'Mont';
+    font-family: 'Montserrat';
     font-size: 48px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -50,7 +53,7 @@ h4 {
 
 p, a {
     font-size: 24px;
-    font-family: 'Mont', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: var(--white);
     font-style: normal;
     font-weight: 600;
@@ -73,7 +76,7 @@ body  {
 }
 
 header {
-    font-family: 'Mont';
+    font-family: 'Montserrat';
     font-size: 72px;
     text-align: left;   
 }
