@@ -55,6 +55,19 @@
 
         accept.addEventListener(
             "click", () => {
+                let studnum = document.getElementById("studnum").value;
+                let studname = document.getElementById("studname").value;
+                let organisation = document.getElementById("organisation").value;
+                if (studname.length < 5) {
+                    document.getElementById("error").innerText = "Ошибка в ФИО";
+                    return;
+                }
+                let data = {
+                    studnum: studnum,
+                    studname: studname,
+                    organisation: organisation
+                }
+                tg.sendData(JSON.stringify(data));
                 tg.close();
             }
         );
