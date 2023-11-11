@@ -76,8 +76,8 @@ input[type="text"] {
     color: var(--White);
     background-color: var(--Black);
     padding: 4px;
-    border: 0px outset;
-    border-radius: 0px var(--Black);
+    border: 0px solid var(--Black);
+    border-radius: 0px;
     border-bottom: 2px solid var(--White);
     margin: 0px;
     margin-bottom: 16px;
