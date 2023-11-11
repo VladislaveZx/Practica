@@ -15,5 +15,6 @@ async def cmd_start(message: types.Message):
     message_text = assets.message_text.send_hello
     
     await message.answer(text=message_text, reply_markup=keyboard)
+    print(message.web_app_data)
     
     return

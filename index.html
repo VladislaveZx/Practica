@@ -29,48 +29,6 @@
         <button id="decline">Отменить</button>
     </form>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <script>
-        let tg = window.Telegram.WebApp;
-        let main = document.getElementById("main");
-        let doc_form = document.getElementById("doc-form");
-        let get_doc = document.getElementById("get-doc");
-        let accept = document.getElementById("accept");
-        let decline = document.getElementById("decline");
-        doc_form.style.display="none";
-
-        get_doc.addEventListener(
-            "click", () => {
-                doc_form.style.display="block";
-                main.style.display="none";
-                document.getElementById("studname").value = tg.initDataUnsafe.user.first_name + " " + tg.initDataUnsafe.user.last_name
-
-            }
-        );
-
-        decline.addEventListener(
-            "click", () => {
-                tg.close();
-            }
-        );
-
-        accept.addEventListener(
-            "click", () => {
-                let studnum = document.getElementById("studnum").value;
-                let studname = document.getElementById("studname").value;
-                let organisation = document.getElementById("organisation").value;
-                if (studname.length < 5) {
-                    document.getElementById("error").innerText = "Ошибка в ФИО";
-                    return;
-                }
-                let data = {
-                    studnum: studnum,
-                    studname: studname,
-                    organisation: organisation
-                }
-                tg.sendData(JSON.stringify(data));
-                tg.close();
-            }
-        );
-    </script>
+    <script src="/scripts/script.js"></script>
 </body>
 </html>
