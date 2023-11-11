@@ -12,9 +12,12 @@ class MyFilter(Filter):
         self.check_data = check_data
         
     async def __call__(self, message: types.Message) -> bool:
-        return message.web_app_data.button_text == self.check_data
+        import json
+        data = json.loads(message.web_app_data.data)
+        print(data)
+        return self.check_data == data['action']
 
-@dp.message(MyFilter(check_data=assets.reply_keyboards.get_doc.text))
+@dp.message(MyFilter(check_data="document_data"))
 async def check_web_app_data(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)

@@ -65,7 +65,8 @@
                 let document_data = {
                     studnum: studnum,
                     studname: studname,
-                    organisation: organisation
+                    organisation: organisation,
+                    action: "document_request"
                 }
                 tg.sendData(JSON.stringify(document_data));
                 tg.close();

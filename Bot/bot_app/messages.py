@@ -36,21 +36,6 @@ async def back_button(message: types.Message):
     await hello_message(message)
 
 
-# Get document about studying
-@dp.message(MyFilter(assets.reply_keyboards.get_doc.text))
-async def get_doc(message: types.Message):
-    from .assets.reply_keyboards import back_button
-    from .assets.message_text import coming_soon
-    
-    keyboard = types.ReplyKeyboardMarkup(
-        keyboard=[[back_button]],
-        resize_keyboard=True
-    )
-    await message.answer(text=coming_soon, reply_markup=keyboard)
-    
-    return
-
-
 # Get ling to rsreu site
 @dp.message(MyFilter(assets.reply_keyboards.rsreu_site.text))
 async def get_doc(message: types.Message):
@@ -98,19 +83,5 @@ async def get_doc(message: types.Message):
         ]
     )
     await message.answer(text=link_to_edu, reply_markup=keyboard)
-    
-    return
-
-
-@dp.message(MyFilter(assets.reply_keyboards.show_graph.text))
-async def get_doc(message: types.Message):
-    from .assets.reply_keyboards import back_button
-    from .assets.message_text import coming_soon
-    
-    keyboard = types.ReplyKeyboardMarkup(
-        keyboard=[[back_button]],
-        resize_keyboard=True
-    )
-    await message.answer(text=coming_soon, reply_markup=keyboard)
     
     return
