@@ -7,27 +7,44 @@
     <title>Деканат ФВТ</title>
 </head>
 <body>
+    <header>
+        <img src="/images/UI/Logo.svg">
+        <h1>Деканат Факультета вычислительной техники</hу>
+    </header>
     <div id="main">
-        <h1>Деканат Факультета вычислительной техники</h1>
-        <button id="get_doc">Получить справку с места учебы</button>
-        <button id="show_graph">Узнать расписание занятий</button>
+        <div><button id="get_doc">Получить справку с места учебы</button></div>
+        <div><button id="show_graph">Узнать расписание занятий</button></div>
     </div>
     <form id="doc_info">
+        <h1>Получить справку с места учебы</h1>
+        <p>Для принятия вашей заявки пришлите свои данные</p>
         <input type="text" placeholder="ФИО студента" id="username">
         <input type="text" placeholder="Номер студенческого билета" id="studnum">
         <input type="text" placeholder="Название организации" id="organisation">
         <button id="sendquery">Отправить</button>
     </form>
+    <footer>
+        <p>&copy;2023 год - все права защищены.</p>
+    </footer>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         let tg = window.Telegram.WebApp;
         let get_doc = document.getElementById("get_doc");
         let show_graph = document.getElementById("show_graph");
+        let sendquery = document.getElementById("sendquery");
+        document.getElementById("doc_info").style.display = "none";
 
         get_doc.addEventListener(
             "click", () => {
                 document.getElementById("main").style.display = "none";
                 document.getElementById("doc_info").style.display = "block";
+            }
+        );
+
+        sendquery.addEventListener(
+            "click", () => {
+                document.getElementById("doc_info").style.display = "none";
+                document.getElementById("main").style.display = "block";
             }
         );
     </script>

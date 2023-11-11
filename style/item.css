@@ -1,0 +1,103 @@
+.body {
+  background: linear-gradient(45deg, #000000, #303030);
+  width: auto;
+  height: auto;
+}
+@font-face {
+  font-family: 'Mont';
+  src: url('Mont-Regular.woff2') format('woff2'), /* Формат WOFF2 */
+      url('Mont-Regular.woff') format('woff'); /* Формат WOFF */
+  font-weight: 600; /* Вес шрифта */
+  font-style: normal; 
+  color: #EAEAEA;
+}
+.header {
+  font-family: 'Mont', sans-serif;
+  font-size: 24px;
+  text-align: center;
+  color: #EAEAEA;
+}
+.inline-checkbox {
+  background-color: #303030;
+  color: #EAEAEA;
+}
+
+.Form {
+  color: #EAEAEA;
+  text-align: center;
+  font-size: 18px;
+  font-family: 'Mont', sans-serif;
+}
+.Form div {
+  text-align: center;
+  margin: 10px 0; /* Добавить отступы для разделения строк */
+}
+.Form input[type="text"]{
+  border-radius: 5px; /* Добавляем скругленные углы */
+  width: 100%;
+  height: 30px;
+  background-color: #EAEAEA;
+  outline: none;
+  color: #303030;
+  font-size: 18px;
+  font-family: 'Mont', sans-serif;
+}
+
+.Form input[type="radio"]{ /* Добавляем скругленные углы */
+  /* width: 100%; */
+  background-color: #EAEAEA;
+  outline: none;
+  color: #303030;
+  font-family: 'Mont', sans-serif;
+}
+
+.Form input[type="radio"]{ /* Добавляем скругленные углы */
+  /* width: 100%; */
+  background-color: #EAEAEA;
+  outline: none;
+  color: #303030;
+  font-family: 'Mont', sans-serif;
+}
+
+.Form textarea {
+  width: 100%;
+  height:fit-content;
+  min-height: 100px;
+  resize: vertical;
+  background-color: #EAEAEA;
+  outline: none;
+  color: #000000;
+  font-family: 'Mont', sans-serif;
+  font-size: 18px;
+} 
+
+.Form select {
+  width: 100%;
+  box-sizing: border-box;
+  width: 200px; /* Устанавливаем ширину списка */
+  height: 30px; /* Устанавливаем высоту списка */
+  font-family: 'Mont', sans-serif; /* Устанавливаем шрифт */
+  font-size: 18px; /* Устанавливаем размер шрифта */
+  border: 2px solid #007BFF; /* Устанавливаем рамку */
+  border-radius: 5px; /* Добавляем скругленные углы */
+  background-color: #FFFFFF; /* Устанавливаем цвет фона */
+  color: #000000; /* Устанавливаем цвет текста */ /* Учтите границы в ширине элементов ввода */
+}
+
+.Form input[type="submit"] {
+  /* width: 100%; */
+  background-color: #FFFFFF;
+  color: #000000;
+  font-family: 'Mont', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px 20px;
+  border: 2px solid #007BFF; /* Обводка с синим цветом */
+  border-radius: 10px; /* Добавляем скругленные углы */
+  cursor: pointer; /* Изменяем вид курсора при наведении */
+}
+
+.Form input[type="submit"]:hover {
+  background-color: #007BFF; /* Изменяем цвет фона при наведении */
+  color: #FFFFFF; /* Изменяем цвет текста при наведении */
+}
