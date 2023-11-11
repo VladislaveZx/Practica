@@ -19,9 +19,9 @@ body {
     max-width: 390px;
     text-align: center;
     /* border: 1px solid var(--White); */
-    /* color:var(--tg-theme-text-color); */
+    color:var(--tg-theme-text-color);
     color: var(--White);
-    /* background: var(--tg-theme-bg-color); */
+    background: var(--tg-theme-bg-color);
     background-color: var(--Black);
 }
 
@@ -62,18 +62,21 @@ form {
 }
 
 form p {
+    font-family: 'TT Norms Pro', sans-serif;
     margin-left: auto;
     margin-right: auto;
     font-size: 8px;
 }
 
 input[type="text"] {
+    width: 320px;
+    font-size: 8px;
     font-weight: lighter;
     color: var(--White);
     background-color: var(--Black);
-    padding: 2px;
-    border: 0px;
-    border-bottom: 1px solid var(--White);
+    padding: 4px;
+    border: 0px outset;
+    border-bottom: 2px solid var(--White);
     margin: 0px;
     margin-bottom: 16px;
 }
