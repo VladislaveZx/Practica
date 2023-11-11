@@ -19,9 +19,11 @@ body {
     margin-left: 30px;
     margin-right: 30px;
 
-    color: var(--White);
-    background: var(--Black);
+    color: var(--tg-theme-text-color);
+    background: var(--tg-theme-bg-color);
 }
+
+
 
 h1 {
     color: var(--White);
@@ -53,8 +55,8 @@ button {
     border-radius: 30px;
     border: 0px solid var(--Purple);
 
-    background-color: var(--White);
-    color: var(--Purple);
+    background-color: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
 }
 
 button:hover {
