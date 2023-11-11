@@ -1,98 +1,62 @@
-@font-face {
-    font-family: 'TT Norms Pro', sans-serif;
-    src: url("https://fonts.cdnfonts.com/css/tt-norms-pro");
-    font-weight: 600;
-    font-style: normal; 
-}
+@import url('https://fonts.cdnfonts.com/css/tt-norms-pro');
 
 :root {
-    --black: #1C1C1C;
-    --white: #FFFFFF;
-    --purple: #AE78F2;
-    --bacground-gradient: ;
+    --White: #FFFFFF;
+    --Black: #1C1C1C;
+    --Purple: #AE78F2;
+    --Gray: #888888;
 }
 
 body {
-    font-family: 'TT Norms Pro', sans-serif;
-    /* background-image: url("/images/UI/bcg.png"); */
-    background-color: var(--black);
-    margin: 5%;
-}
+    display: block;
+    flex-shrink: 0;
+    gap: 20px 20px;
 
-header {
-    height: 220px;
-    display: flex;
-    background-color: var(--black);
-}
-header h1 {
-    font-size: 60px;
-}
+    text-align: center;
 
-header img {
-    width: 20%;
+    margin-top: 400px;
+    margin-bottom: 200px;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    color: var(--White);
+    background: var(--Black);
 }
 
 h1 {
-    font-size: 40px;
-    text-align: left;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--purple);
-}
+    color: var(--White);
+    text-align: center;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
 
-p {
-    font-size: 24px;
-    text-align: left;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--white);
-}
-
-form #doc_info {
-    display: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 img {
     display: block;
-    width: 30%;
     margin-left: auto;
     margin-right: auto;
+    max-width: 100%;
+    max-height: fit-content;
 }
 
 button {
-    font-size: 24px;
-    margin-bottom: 12px;
-    background-color: var(--black);
-    color: var(--white);
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 2px solid var(--white); 
-    cursor: pointer; 
+    font-family: 'TT Norms Pro', sans-serif;
+    font-size: 48px;
+
+    width: fit-content;
+    padding: 6px 20px;
+    border-radius: 30px;
+    border: 0px solid var(--Purple);
+
+    background-color: var(--White);
+    color: var(--Purple);
 }
 
 button:hover {
-    color: var(--purple);
-    border-bottom: 2px solid var(--purple); 
-}
-
-input[type="text"] {
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 2px solid var(--white);
-    width: 100%;
-    height: auto;
-    padding: 6px;
-    background-color: var(--black);
-    outline: none;
-    color: var(--white);
-    margin-bottom: 10px;
-    font-size: 24px;
-}
-
-input[type="text"]:hover {
-    border-bottom: 2px solid var(--purple); /* Обводка с синим цветом */
+    background: var(--Black);
 }
