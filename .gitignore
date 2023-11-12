@@ -1,2 +1,4 @@
 .DS_store
 *.pyc
+Bot/bot_app/__pycache__/web_app.cpython-311.pyc
+*.pyc

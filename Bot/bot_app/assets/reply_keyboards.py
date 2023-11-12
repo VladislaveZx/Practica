@@ -6,7 +6,10 @@ from aiogram.types import KeyboardButton
 
 hello_button = KeyboardButton(text="👋 Поздороваться")
 
-site = KeyboardButton(text='Перейти в WebApp', web_app=WebAppInfo(url='https://iamlukovkin.github.io/Practica/'))
+site = KeyboardButton(
+    text='Перейти в WebApp', 
+    web_app=WebAppInfo(url='https://iamlukovkin.github.io/Practica/')
+)
 rsreu_site = KeyboardButton(text='Перейти на сайт РГРТУ')
 cdo_site = KeyboardButton(text='Перейти на портал дистанционного обучения')
 edu_site = KeyboardButton(text='Перейти на портал образовательный портал РГРТУ')

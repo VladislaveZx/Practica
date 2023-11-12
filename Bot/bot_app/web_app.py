@@ -2,6 +2,7 @@ from aiogram import types, Router
 from aiogram.filters import Filter
 
 from . import assets
+from .database.requests import add_request
 
 from .app import dp
 
@@ -17,20 +18,28 @@ class MyFilter(Filter):
         print(data)
         return self.check_data == data['action']
 
-@dp.message(MyFilter(check_data="document_data"))
+@dp.message(MyFilter(check_data="document_request"))
 async def check_web_app_data(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)
-    await message.answer(
-        text=f'''
-Получена новая заяка на:
-
-Имя: {data['studname']}
-Студенческий билет: №{data['studnum']}
-Для {data['organisation']}
-
-Ожидайте уведомление.
-        '''
+    res = await add_request(
+        user=message.from_user.id, 
+        studnum=data['studnum'], 
+        studname=data['studname'], 
+        organisation=data['organisation']
     )
+    if not res:
+        message_text = '''
+    <b>Получена новая заяка на:</b>
 
+    Имя: {data['studname']}
+    Студенческий билет: №{data['studnum']}
+    Для {data['organisation']}
+
+    Ожидайте уведомление.
+            '''
+    
+    else:
+        message_text = "Заяка уже есть"
+    await message.answer(message_text)
 
