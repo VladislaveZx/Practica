@@ -22,22 +22,23 @@ class MyFilter(Filter):
 async def check_web_app_data(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)
-    res = await add_request(
+    flag = await add_request(
         user=message.from_user.id, 
         studnum=data['studnum'], 
         studname=data['studname'], 
         organisation=data['organisation']
     )
-    if not res:
-        message_text = '''
-    <b>Получена новая заяка на:</b>
+    if not flag:
+        message_text = \
+f'''
+<b>Получена новая заяка на:</b>
 
-    Имя: {data['studname']}
-    Студенческий билет: №{data['studnum']}
-    Для {data['organisation']}
+Имя: {data['studname']}
+Студенческий билет: №{data['studnum']}
+Для {data['organisation']}
 
-    Ожидайте уведомление.
-            '''
+Ожидайте уведомление.
+'''
     
     else:
         message_text = "Заяка уже есть"
