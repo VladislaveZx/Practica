@@ -161,17 +161,30 @@
 				<h1>Деканат</h1>
 				<h1>факультета вычислительной техники</h1>
 				<p>Твой надежный помощник в обучении</p>
-				<button id="get-doc">Заказать справку</button>
+				<button id="get_doc">Заказать справку</button>
+				<button id="get_reg">Зарегистрироваться</button>
 			</div>
 			<form id="doc-form" style="display: none">
 				<p>Введите номер студенческого билета</p>
-				<input type="text" id="studnum" />
+				<input type="text" id="studnum_doc" />
 				<p>Введите ФИО</p>
-				<input type="text" id="studname" />
+				<input type="text" id="studname_doc" />
 				<p>Введите название целевой организации</p>
-				<input type="text" id="organisation" />
-				<button id="accept">Отправить</button>
-				<button id="decline">Отменить</button>
+				<input type="text" id="organisation_doc" />
+				<button id="accept_doc">Отправить</button>
+				<button id="decline_doc">Отменить</button>
+			</form>
+			<form id="reg_form" style="display: none">
+				<p>Введите номер студенческого билета</p>
+				<input type="text" id="studnum_reg" />
+				<p>Введите ФИО</p>
+				<input type="text" id="studname_reg" />
+				<p>Введите номер группы</p>
+				<input type="text" id="studgroup_reg" />
+				<p>Введите год рождения</p>
+				<input type="text" id="studyear_reg" />
+				<button id="accept_reg">Отправить</button>
+				<button id="decline_reg">Отменить</button>
 			</form>
 			<div class="layer__items layer-5"></div>
 		</div>
@@ -184,9 +197,13 @@
 			let main = document.getElementById('main')
 			let logo = document.getElementById('logo')
 			let doc_form = document.getElementById('doc-form')
-			let get_doc = document.getElementById('get-doc')
-			let accept = document.getElementById('accept')
-			let decline = document.getElementById('decline')
+			let get_doc = document.getElementById('get_doc')
+			let accept_doc = document.getElementById('accept_doc')
+			let decline_doc = document.getElementById('decline_doc')
+			let reg_form = document.getElementById('reg_form')
+			let get_reg = document.getElementById('get_reg')
+			let accept_reg = document.getElementById('accept_reg')
+			let decline_reg = document.getElementById('decline_reg')
 
 			get_doc.addEventListener('click', () => {
 				doc_form.style.display = 'block'
@@ -198,23 +215,54 @@
 					tg.initDataUnsafe.user.last_name
 			})
 
-			decline.addEventListener('click', () => {
+			get_reg.addEventListener('click', () => {
+				reg_form.style.display = 'block'
+				logo.style.display = 'none'
+				main.style.display = 'none'
+				document.getElementById('studname').value =
+					tg.initDataUnsafe.user.first_name +
+					' ' +
+					tg.initDataUnsafe.user.last_name
+			})
+
+			decline_doc.addEventListener('click', () => {
+				doc_form.style.display = 'none'
+				logo.style.display = 'block'
+				main.style.display = 'block'
 				tg.close()
 			})
 
-			accept.addEventListener('click', () => {
-				let studnum = document.getElementById('studnum').value
-				let studname = document.getElementById('studname').value
-				let organisation = document.getElementById('organisation').value
-				if (studname.length < 5) {
-					document.getElementById('error').innerText = 'Ошибка в ФИО'
-					return
-				}
+			decline_reg.addEventListener('click', () => {
+				reg_form.style.display = 'none'
+				logo.style.display = 'block'
+				main.style.display = 'block'
+				tg.close()
+			})
+
+			accept_doc.addEventListener('click', () => {
+				let studnum_doc = document.getElementById('studnum_doc').value
+				let studname_doc = document.getElementById('studname_doc').value
+				let organisation_doc = document.getElementById('organisation_doc').value
 				let document_data = {
-					studnum: studnum,
-					studname: studname,
-					organisation: organisation,
+					studnum: studnum_doc,
+					studname: studname_doc,
+					organisation: organisation_doc,
 					action: 'document_request',
+				}
+				tg.sendData(JSON.stringify(document_data))
+				tg.close()
+			})
+			accept_reg.addEventListener('click', () => {
+				let studnum_reg = document.getElementById('studnum_reg').value
+				let studname_reg = document.getElementById('studname_reg').value
+				let studgroup_reg = document.getElementById('studgroup_reg').value
+				let studyear_reg = document.getElementById('studyear_reg').value
+				let document_data = {
+					studnum: studnum_reg,
+					studname: studname_reg,
+					organisation: studgroup_reg,
+					studyear_reg: studyear_reg,
+					action: 'reg_user',
 				}
 				tg.sendData(JSON.stringify(document_data))
 				tg.close()
