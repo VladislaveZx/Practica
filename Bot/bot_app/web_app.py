@@ -19,7 +19,7 @@ class MyFilter(Filter):
         return self.check_data == data['action']
 
 @dp.message(MyFilter(check_data="document_request"))
-async def check_web_app_data(message: types.Message):
+async def document_request(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)
     flag = await add_request(
@@ -45,4 +45,8 @@ f'''
     await message.answer(message_text)
 
 
-# @dp.message(MyFilter(check_data="document_request"))
+@dp.message(MyFilter(check_data="reg_user"))
+async def reg_user(message: types.Message):
+    import json
+    data = json.loads(message.web_app_data.data)
+    print(data)
