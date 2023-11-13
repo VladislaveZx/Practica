@@ -1,73 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" type="text/css" href="style/style.css" />
-		<title>Document</title>
+		<title>Деканат ФВТ</title>
 	</head>
 	<body>
-		<div id="main">
-			<img src="https://i.ibb.co/Fn1NsJG/Logo.png" />
-			<h1>Факультет вычислительной техники</h1>
-			<button id="get-doc">Получить справку</button>
+		<svg
+			class="decor-line-top"
+			xmlns="http://www.w3.org/2000/svg"
+			width="55"
+			height="200"
+			viewBox="0 0 55 200"
+			fill="none"
+		>
+			<path
+				d="M3 0V200M27.5 0V200M52 0V200"
+				stroke="#AE78F2"
+				stroke-width="5"
+			/>
+		</svg>
+		<svg
+			class="decor-line-down"
+			xmlns="http://www.w3.org/2000/svg"
+			width="55"
+			height="200"
+			viewBox="0 0 55 200"
+			fill="none"
+		>
+			<path
+				d="M3 0V200M27.5 0V200M52 0V200"
+				stroke="#AE78F2"
+				stroke-width="5"
+			/>
+		</svg>
+		<div class="back-text"><h1>ФВТ</h1></div>
+		<div class="hero-content">
+			<img class="Logo" src="https://i.ibb.co/Fn1NsJG/Logo.png" />
+			<h1>
+				Деканат
+				<span>Факультета вычислительной техники</span>
+			</h1>
+			<p>Твой надежный помощник в обучении</p>
+			<button id="">Заказать справку</button>
 		</div>
-		<form id="doc-form">
-			<div id="input-space">
-				<p>Введите номер студенческого билета</p>
-				<input id="studnum" type="text" name="studnum" value="" />
-			</div>
-			<div id="input-space">
-				<p>Введите ФИО</p>
-				<input id="studname" type="text" name="studname" value="" />
-			</div>
-			<div id="input-space">
-				<p>Введите название организации</p>
-				<input id="organisation" type="text" name="organisation" value="" />
-			</div>
-			<button id="accept">Отправить</button>
-			<button id="decline">Отменить</button>
-		</form>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
-		<script>
-			let tg = window.Telegram.WebApp
-			let main = document.getElementById('main')
-			let doc_form = document.getElementById('doc-form')
-			let get_doc = document.getElementById('get-doc')
-			let accept = document.getElementById('accept')
-			let decline = document.getElementById('decline')
-			doc_form.style.display = 'none'
-
-			get_doc.addEventListener('click', () => {
-				doc_form.style.display = 'block'
-				main.style.display = 'none'
-				document.getElementById('studname').value =
-					tg.initDataUnsafe.user.first_name +
-					' ' +
-					tg.initDataUnsafe.user.last_name
-			})
-
-			decline.addEventListener('click', () => {
-				tg.close()
-			})
-
-			accept.addEventListener('click', () => {
-				let studnum = document.getElementById('studnum').value
-				let studname = document.getElementById('studname').value
-				let organisation = document.getElementById('organisation').value
-				if (studname.length < 5) {
-					document.getElementById('error').innerText = 'Ошибка в ФИО'
-					return
-				}
-				let document_data = {
-					studnum: studnum,
-					studname: studname,
-					organisation: organisation,
-					action: 'document_request',
-				}
-				tg.sendData(JSON.stringify(document_data))
-				tg.close()
-			})
-		</script>
 	</body>
 </html>
