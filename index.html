@@ -165,11 +165,11 @@
 			</div>
 			<form id="doc-form" style="display: none">
 				<p>Введите номер студенческого билета</p>
-				<input type="text" name="studnum" id="studnum" />
+				<input type="text" id="studnum" />
 				<p>Введите ФИО</p>
-				<input type="text" name="studname" id="studname" />
+				<input type="text" id="studname" />
 				<p>Введите название целевой организации</p>
-				<input type="text" name="organization" id="organization" />
+				<input type="text" id="organisation" />
 				<button id="accept">Отправить</button>
 				<button id="decline">Отменить</button>
 			</form>
@@ -180,6 +180,7 @@
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
 		<script>
 			let tg = window.Telegram.WebApp
+			tg.expand()
 			let main = document.getElementById('main')
 			let logo = document.getElementById('logo')
 			let doc_form = document.getElementById('doc-form')
