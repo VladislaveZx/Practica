@@ -8,113 +8,164 @@
 	--Gray: #888888;
 	--index: calc(1vw + 1vh);
 }
-
-body,
-html {
-	height: 100%;
-	width: 100%;
+html,
+body {
 	background-color: var(--Black);
-	/* background: linear-gradient(135deg, #1c1c1c 0%, #ae78f2 100%); */
-	color: var(--White);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.bg-img {
-	opacity: 0.56;
-	mix-blend-mode: darken;
-	position: absolute;
-	width: calc(var(--index) * 35);
-	flex-shrink: 0;
-	z-index: 0.1;
-	flex-shrink: 0;
-}
-
-.back-text {
-	font-weight: 900;
-	--font-size: calc(var(--index) * 42);
-	font-size: var(--font-size);
-	letter-spacing: calc(var(--index) * -6);
-	left: calc(50% - calc(var(--font-size)));
-	line-height: 0;
-	color: var(--White);
-	opacity: 0.15;
-	z-index: 0.5;
-	position: absolute;
-}
-
-.decor-line-top {
-	--height: calc(var(--index) * 5);
-	height: var(--height);
-	position: absolute;
-	left: calc(var(--index) * 2);
-	top: 0;
-}
-.decor-line-down {
-	position: absolute;
-	--height: calc(var(--index) * 5);
-	height: var(--height);
-	right: calc(var(--index) * 2);
-	top: calc(100% - var(--height));
+	min-width: calc(var(--index) * 20);
+	margin-bottom: calc(var(--index) * 1);
 }
 
 * {
-	font-family: 'TT Norms Pro';
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	line-height: calc(var(--index) * 1.5);
 }
 
-.layers__items {
+.decor-line-top {
+	z-index: 1;
 	position: absolute;
-	background-size: cover;
-	background-position: center;
+	top: 0;
+	height: calc(var(--index) * 6);
+	left: calc(var(--index) * 1);
+}
+
+.decor-line-bottom {
+	z-index: 1;
+	--height: calc(var(--index) * 6);
+	position: absolute;
+	height: var(--height);
+	top: calc(100% - var(--height));
+	right: calc(calc(var(--index) * 1));
+}
+
+.bg-gradient {
+	z-index: 0.1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	background: linear-gradient(135deg, var(--Black) 0%, var(--Purple) 100%);
+	opacity: 0.5;
+}
+
+.science-image {
+	--width: calc(var(--index) * 40);
+	width: var(--width);
+	z-index: 0.2;
+	position: absolute;
+	left: calc(50% - var(--width));
+}
+
+.layer-3 {
+	--font-height: calc(var(--index) * 7);
+	z-index: 0.3;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	text-align: center;
+
+	color: var(--Black);
+	opacity: 0.2;
+
+	font-family: 'TT Norms Pro';
+	font-size: var(--font-height);
+	font-weight: 900;
+	line-height: 0;
+}
+
+.layers {
+	display: block;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.layer-4 {
+	z-index: 0.4;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 45%;
+
+	color: var(--White);
+	text-transform: uppercase;
+}
+
+.layer-4 h1 {
+	--font-height: calc(var(--index) * 1);
+	font-family: 'TT Norms Pro';
+	font-size: var(--font-height);
+	font-weight: 900;
 }
 
 .Logo {
-	--logo-size: calc(var(--index) * 15);
-	width: var(--logo-size);
+	z-index: 0.4;
+	--Logo-width: calc(var(--index) * 20);
 	position: absolute;
-	top: calc(50% - calc(var(--logo-size) / 2));
-	left: calc(50% - calc(var(--logo-size) / 2));
+	width: var(--Logo-width);
+	left: calc(50% - calc(var(--Logo-width) * 0.5));
+	top: calc(50% - calc(var(--Logo-width) * 0.5));
+}
 
+.layer-4 p {
 	display: block;
-}
-
-.hero-content {
-	z-index: 1;
-	margin-top: calc(var(--index) * 5);
-	text-align: center;
-	text-transform: uppercase;
-	letter-spacing: calc(var(--index) * -0.1);
-	line-height: 2em;
-	font-size: calc(var(--index) * 2);
-	font-weight: 1000;
-}
-
-.hero-content span {
-	display: block;
-}
-
-.hero-content p {
-	text-transform: none;
 	font-family: 'Caveat';
-	font-weight: 200;
-	letter-spacing: calc(var(--index) * 0.07);
-	font-size: calc(var(--index) * 2.6);
+	text-transform: none;
+	font-size: calc(var(--index) * 1);
+	line-height: calc(var(--index) * 1.5);
 }
 
 button {
+	--font-size: calc(var(--index) * 0.7);
 	font-family: 'TT Norms Pro';
-	font-weight: 500;
-	font-size: calc(var(--index) * 2.6);
-	letter-spacing: normal;
-	padding: calc(var(--index) * 0.3) calc(var(--index) * 1);
-	background-color: transparent;
+	font-size: var(--font-size);
 	color: var(--White);
+	background-color: transparent;
+	padding: calc(var(--font-size) * 0.05) calc(var(--font-size) * 1);
 	border-radius: 10em;
-	border: 0.1em solid;
-	outline: none;
+	border: calc(var(--font-size) * 0.05) solid var(--White);
 	cursor: pointer;
+	margin-bottom: calc(var(--index) * 0.5);
+	margin-right: calc(var(--index) * 0.5);
+}
+
+form {
+	z-index: 0.5;
+	--width-height: calc(var(--index) * 20);
+	position: absolute;
+	top: calc(50% - calc(var(--width-height) * 0.5));
+	/* top: 0; */
+	/* bottom: 0; */
+	left: calc(50% - calc(var(--width-height) * 0.5));
+	width: var(--width-height);
+	/* height: var(--width-height); */
+	background-color: rgb(0, 0, 0, 0.5);
+
+	--font-size: calc(var(--index) * 0.7);
+	padding: var(--font-size);
+	font-family: 'TT Norms Pro';
+	font-size: var(--font-size);
+	color: var(--White);
+	padding: calc(var(--font-size) * 1.4) calc(var(--font-size) * 1);
+	border-radius: 2em;
+	border: calc(var(--font-size) * 0) solid var(--Black);
+	cursor: pointer;
+	margin: 0;
+}
+
+input[type='text'] {
+	color: var(--White);
+	/* margin-top: calc(var(--font-size) * 1); */
+	width: var(--width-height);
+	padding: calc(var(--font-size) * 0.1);
+	background-color: transparent;
+	border: 0;
+	border-bottom: calc(var(--font-size) * 0.2) solid var(--White);
+	margin-bottom: calc(var(--index) * 1);
+	outline: none;
+}
+form p {
+	margin: 0;
 }
