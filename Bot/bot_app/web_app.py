@@ -2,7 +2,7 @@ from aiogram import types, Router
 from aiogram.filters import Filter
 
 from . import assets
-from .database.requests import add_request
+from .database.requests import add_request, create_stud
 
 from .app import dp
 
@@ -39,7 +39,6 @@ f'''
 
 Ожидайте уведомление.
 '''
-    
     else:
         message_text = "Заяка уже есть"
     await message.answer(message_text)
@@ -50,3 +49,18 @@ async def reg_user(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)
     print(data)
+    # insert new user in db
+    res = await create_stud(
+        user=message.from_user.id,
+        studnum=data['studnum'],
+        studname=data['studname'],
+        studgroup=data['studgroup'],
+        studyear=data['studyear']
+    )
+    if not res:
+        message_text = "Регистрация прошла успешно!"
+    else: 
+        message_text = "Вы уже зарегистрированы!"
+    message.answer(message_text)
+        
+    
