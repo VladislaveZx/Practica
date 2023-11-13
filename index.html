@@ -39,7 +39,6 @@
 		</svg>
 		<!-- <img class="Logo" src="https://i.ibb.co/Fn1NsJG/Logo.png" /> -->
 		<div class="layers">
-			<!-- science-image -->
 			<div class="layer__items bg-gradient"></div>
 			<!-- <svg
 				class="science-image"
@@ -161,8 +160,21 @@
 				<h1>Деканат</h1>
 				<h1>факультета вычислительной техники</h1>
 				<p>Твой надежный помощник в обучении</p>
-				<button id="get-doc">Заказать справку</button>
+				<div><button id="get-reg">Зарегистрироваться</button></div>
+				<div><button id="get-doc">Заказать справку</button></div>
 			</div>
+			<form id="reg-form" style="display: none">
+				<p>Введите номер студенческого билета</p>
+				<input type="text" id="studnum" />
+				<p>Введите ФИО</p>
+				<input type="text" id="studname" />
+				<p>Введите номер группы</p>
+				<input type="text" id="studgroup" />
+				<p>Введите ваш год рождения</p>
+				<input type="text" id="studyear" />
+				<button id="accept-reg">Отправить</button>
+				<button id="decline-reg">Отменить</button>
+			</form>
 			<form id="doc-form" style="display: none">
 				<p>Введите номер студенческого билета</p>
 				<input type="text" id="studnum" />
@@ -170,7 +182,7 @@
 				<input type="text" id="studname" />
 				<p>Введите название целевой организации</p>
 				<input type="text" id="organisation" />
-				<button id="accept">Отправить</button>
+				<button id="accept-reg">Отправить</button>
 				<button id="decline">Отменить</button>
 			</form>
 			<div class="layer__items layer-5"></div>
@@ -181,12 +193,17 @@
 		<script>
 			let tg = window.Telegram.WebApp
 			tg.expand()
+
 			let main = document.getElementById('main')
 			let logo = document.getElementById('logo')
 			let doc_form = document.getElementById('doc-form')
+			let reg_form = document.getElementById('reg-form')
 			let get_doc = document.getElementById('get-doc')
-			let accept = document.getElementById('accept')
-			let decline = document.getElementById('decline')
+			let get_reg = document.getElementById('get-reg')
+			let decline_doc = document.getElementById('decline-doc')
+			let accept_doc = document.getElementById('accept-doc')
+			let decline_reg = document.getElementById('decline-doc')
+			let accept_reg = document.getElementById('accept-doc')
 
 			get_doc.addEventListener('click', () => {
 				doc_form.style.display = 'block'
@@ -198,11 +215,43 @@
 					tg.initDataUnsafe.user.last_name
 			})
 
-			decline.addEventListener('click', () => {
+			get_reg.addEventListener('click', () => {
+				reg_form.style.display = 'block'
+				logo.style.display = 'none'
+				main.style.display = 'none'
+				document.getElementById('studname').value =
+					tg.initDataUnsafe.user.first_name +
+					' ' +
+					tg.initDataUnsafe.user.last_name
+			})
+
+			decline_doc.addEventListener('click', () => {
 				tg.close()
 			})
 
-			accept.addEventListener('click', () => {
+			accept_doc.addEventListener('click', () => {
+				let studnum = document.getElementById('studnum').value
+				let studname = document.getElementById('studname').value
+				let organisation = document.getElementById('organisation').value
+				if (studname.length < 5) {
+					document.getElementById('error').innerText = 'Ошибка в ФИО'
+					return
+				}
+				let document_data = {
+					studnum: studnum,
+					studname: studname,
+					organisation: organisation,
+					action: 'reg_user',
+				}
+				tg.sendData(JSON.stringify(document_data))
+				tg.close()
+			})
+
+			decline_doc.addEventListener('click', () => {
+				tg.close()
+			})
+
+			accept_doc.addEventListener('click', () => {
 				let studnum = document.getElementById('studnum').value
 				let studname = document.getElementById('studname').value
 				let organisation = document.getElementById('organisation').value
