@@ -50,11 +50,16 @@ body {
 }
 
 .science-image {
-	--width: calc(var(--index) * 40);
-	width: var(--width);
-	z-index: 0.2;
+	--width: calc(var(--index) * 20);
+	z-index: 0.3;
 	position: absolute;
-	left: calc(50% - var(--width));
+	/* top: 0; */
+	bottom: calc(25% - calc(var(--width) * 0.75));
+	opacity: 0.2;
+	/* top: calc(50% - calc(var(--width) * 1)); */
+
+	width: var(--width);
+	left: calc(50% - var(--width) * 0.5);
 }
 
 .layer-3 {
