@@ -226,6 +226,9 @@
 			})
 
 			decline_doc.addEventListener('click', () => {
+				reg_form.style.display = 'none'
+				logo.style.display = 'block'
+				main.style.display = 'block'
 				tg.close()
 			})
 
@@ -233,10 +236,6 @@
 				let studnum = document.getElementById('studnum').value
 				let studname = document.getElementById('studname').value
 				let organisation = document.getElementById('organisation').value
-				if (studname.length < 5) {
-					document.getElementById('error').innerText = 'Ошибка в ФИО'
-					return
-				}
 				let document_data = {
 					studnum: studnum,
 					studname: studname,
