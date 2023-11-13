@@ -61,6 +61,6 @@ async def reg_user(message: types.Message):
         message_text = "Регистрация прошла успешно!"
     else: 
         message_text = "Вы уже зарегистрированы!"
-    message.answer(message_text)
+    await message.answer(message_text)
         
     

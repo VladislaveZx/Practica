@@ -44,9 +44,8 @@ async def add_request(user: int, studnum: int, studname: str, organisation: str)
 # create new user in stud by user_ id, studnum, studname, studgroup, studyear
 async def create_stud(user: int, studnum: int, studname: str, studgroup: int, studyear: int) -> Stud:
     async with async_session() as session:
-        # check except user in db
         result = await session.execute(select(Stud).where(Stud.telegram_id == user))
-        if result.scalar() is not None:
+        if result.scalar() is None:
             stud = Stud(
                 telegram_id=user, 
                 studnum=studnum, 
@@ -55,6 +54,18 @@ async def create_stud(user: int, studnum: int, studname: str, studgroup: int, st
                 studyear=studyear
             )
             session.add(stud)
+            await session.commit()
+            return False
+        else:
+            return True
+        
+
+async def add_user(user: int, username: str, fullname: str) -> User:
+    async with async_session() as session:
+        result = await session.execute(select(User).where(User.telegram_id == user))
+        if result.scalar() is None:
+            user = User(telegram_id=user, username=username, fullname=fullname)
+            session.add(user)
             await session.commit()
             return False
         else:
