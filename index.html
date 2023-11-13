@@ -241,29 +241,27 @@
 					studnum: studnum,
 					studname: studname,
 					organisation: organisation,
-					action: 'reg_user',
+					action: 'document_request',
 				}
 				tg.sendData(JSON.stringify(document_data))
 				tg.close()
 			})
 
-			decline_doc.addEventListener('click', () => {
+			decline_reg.addEventListener('click', () => {
 				tg.close()
 			})
 
-			accept_doc.addEventListener('click', () => {
+			accept_reg.addEventListener('click', () => {
 				let studnum = document.getElementById('studnum').value
 				let studname = document.getElementById('studname').value
-				let organisation = document.getElementById('organisation').value
-				if (studname.length < 5) {
-					document.getElementById('error').innerText = 'Ошибка в ФИО'
-					return
-				}
+				let studgroup = document.getElementById('studgroup').value
+				let studyear = document.getElementById('studyear').value
 				let document_data = {
 					studnum: studnum,
 					studname: studname,
-					organisation: organisation,
-					action: 'document_request',
+					studgroup: studgroup,
+					studyear: studyear,
+					action: 'reg_user',
 				}
 				tg.sendData(JSON.stringify(document_data))
 				tg.close()
