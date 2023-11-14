@@ -163,6 +163,7 @@
 				<p>Твой надежный помощник в обучении</p>
 				<button id="get_doc">Заказать справку</button>
 				<button id="get_reg">Зарегистрироваться</button>
+				<button id="get_graph">Узнать расписание</button>
 			</div>
 			<form id="doc-form" style="display: none">
 				<p>Введите номер студенческого билета</p>
@@ -186,6 +187,26 @@
 				<button id="accept_reg">Отправить</button>
 				<button id="decline_reg">Отменить</button>
 			</form>
+			<form id="graph_form" style="display: none">
+				<p>Введите номер группы</p>
+				<input type="text" id="studgroup_graph" />
+				<p>Выберите неделю</p>
+				<select name="Вариант" id="week_type">
+					<option value="Числ." selected>Числитель</option>
+					<option value="Знам.">Знаменатель</option>
+				</select>
+				<p>Выберите день недели</p>
+				<select id="day_of_week">
+					<option value="Понедельник" selected>Понедельник</option>
+					<option value="Вторник">Вторник</option>
+					<option value="Среда">Среда</option>
+					<option value="Четверг">Четверг</option>
+					<option value="Пятница">Пятница</option>
+					<option value="Суббота">Суббота</option>
+				</select>
+				<button id="accept_graph">Отправить</button>
+				<button id="decline_graph">Отменить</button>
+			</form>
 			<div class="layer__items layer-5"></div>
 		</div>
 		<div class="layer__items layer-6"></div>
@@ -204,6 +225,10 @@
 			let get_reg = document.getElementById('get_reg')
 			let accept_reg = document.getElementById('accept_reg')
 			let decline_reg = document.getElementById('decline_reg')
+			let graph_form = document.getElementById('graph_form')
+			let get_graph = document.getElementById('get_graph')
+			let accept_graph = document.getElementById('accept_graph')
+			let decline_graph = document.getElementById('decline_graph')
 
 			get_doc.addEventListener('click', () => {
 				doc_form.style.display = 'block'
@@ -225,6 +250,12 @@
 					tg.initDataUnsafe.user.last_name
 			})
 
+			get_graph.addEventListener('click', () => {
+				graph_form.style.display = 'block'
+				logo.style.display = 'none'
+				main.style.display = 'none'
+			})
+
 			decline_doc.addEventListener('click', () => {
 				doc_form.style.display = 'none'
 				logo.style.display = 'block'
@@ -234,6 +265,13 @@
 
 			decline_reg.addEventListener('click', () => {
 				reg_form.style.display = 'none'
+				logo.style.display = 'block'
+				main.style.display = 'block'
+				tg.close()
+			})
+
+			decline_graph.addEventListener('click', () => {
+				graph_form.style.display = 'none'
 				logo.style.display = 'block'
 				main.style.display = 'block'
 				tg.close()
@@ -263,6 +301,20 @@
 					studgroup: studgroup_reg,
 					studyear: studyear_reg,
 					action: 'reg_user',
+				}
+				tg.sendData(JSON.stringify(document_data))
+				tg.close()
+			})
+
+			accept_graph.addEventListener('click', () => {
+				let studgroup_graph = document.getElementById('studgroup_graph').value
+				let week_type = document.getElementById('week_type').value
+				let day_of_week = document.getElementById('day_of_week').value
+				let document_data = {
+					studgroup: studgroup_graph,
+					week_type: week_type,
+					day_of_week: day_of_week,
+					action: 'get_graph',
 				}
 				tg.sendData(JSON.stringify(document_data))
 				tg.close()

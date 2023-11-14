@@ -170,6 +170,7 @@ input[type='text'] {
 	width: var(--width-height);
 	padding: calc(var(--font-size) * 0.1);
 	background-color: transparent;
+	text-align: center;
 	border: 0;
 	border-bottom: calc(var(--font-size) * 0.2) solid var(--White);
 	margin-bottom: calc(var(--index) * 1);
@@ -181,4 +182,17 @@ input[type='text'] :hover {
 }
 form p {
 	margin: 0;
+}
+
+select {
+	color: var(--White);
+	/* margin-top: calc(var(--font-size) * 1); */
+	width: var(--width-height);
+	padding: calc(var(--font-size) * 0.1);
+	background-color: transparent;
+	text-align: center;
+	border: 0;
+	border-bottom: calc(var(--font-size) * 0.2) solid var(--White);
+	margin-bottom: calc(var(--index) * 1);
+	outline: none;
 }
