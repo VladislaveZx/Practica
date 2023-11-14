@@ -25,8 +25,6 @@ def parse_table_graph(src_path: str, dst_path: str):
             keys.append(key)
             values.append(filled_array)
     data_dict = dict(zip(keys, values))
-    for key in data_dict.keys():
-        print(key, data_dict[key])
 
     graph = {}
     for key in data_dict.keys():
