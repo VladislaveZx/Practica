@@ -1,10 +1,11 @@
 from aiogram import types, Router
 from aiogram.filters import Filter
 
-from . import assets
-from .database.requests import add_request, create_stud
 
-from .app import dp
+# from .database.requests import add_request, create_stud
+from ..database.requests import add_request, create_stud
+
+from ..app import dp
 
 router = Router(name=__name__)
 

@@ -68,17 +68,14 @@ class Request(Base):
 # class Graph of the course(int), studgroup, week_type(str), day of week(str), time_start(str), time_end(str), place, teacher, type
 class Graph(Base):
     __tablename__ = "graphs"
-    course: Mapped[int] = mapped_column(BigInteger, )
     studgroup: Mapped[int] = mapped_column(BigInteger, primary_key=True)
     week_type: Mapped[str] = mapped_column(String(30), primary_key=True)
     day_of_week: Mapped[str] = mapped_column(String(30), primary_key=True)
-    time_start: Mapped[str] = mapped_column(String(30), primary_key=True)
-    time_end: Mapped[str] = mapped_column(String(30))
-    place: Mapped[str] = mapped_column(String(30))
-    teacher: Mapped[str] = mapped_column(String(30), primary_key=True)
-    type: Mapped[str] = mapped_column(String(30))
+    time: Mapped[str] = mapped_column(String(30), primary_key=True)
+    name: Mapped[str] = mapped_column(String(30))
+    tutor: Mapped[str] = mapped_column(String(30), primary_key=True)
     def __repr__(self):
-        pass
+        return f"[studgroup={self.studgroup}, week_type={self.week_type}, day_of_week={self.day_of_week}, time={self.time}, name={self.name}, tutor={self.tutor})\n"
 
 
 async def async_main():

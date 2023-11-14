@@ -1,10 +1,9 @@
-from typing import Any
 from aiogram import types, Router
 from aiogram.filters import Filter
 
-from . import assets
+from .. import assets
 
-from .app import dp
+from ..app import dp
 
 router = Router(name=__name__)
 
@@ -19,8 +18,8 @@ class MyFilter(Filter):
 # Hello message
 @dp.message(MyFilter(assets.reply_keyboards.hello_button.text))
 async def hello_message(message: types.Message):
-    from .assets.reply_keyboards import menu_buttons
-    from .assets.message_text import send_question
+    from ..assets.reply_keyboards import menu_buttons
+    from ..assets.message_text import send_question
     
     keyboard = types.ReplyKeyboardMarkup(
         keyboard=menu_buttons,
@@ -39,8 +38,8 @@ async def back_button(message: types.Message):
 # Get ling to rsreu site
 @dp.message(MyFilter(assets.reply_keyboards.rsreu_site.text))
 async def get_doc(message: types.Message):
-    from .assets.inline_keyboards import menu_button, rsreu_site_button
-    from .assets.message_text import link_to_rsreu
+    from ..assets.inline_keyboards import menu_button, rsreu_site_button
+    from ..assets.message_text import link_to_rsreu
     
     keyboard = types.InlineKeyboardMarkup(
         inline_keyboard=[
@@ -56,8 +55,8 @@ async def get_doc(message: types.Message):
 # Get ling to cdo site
 @dp.message(MyFilter(assets.reply_keyboards.cdo_site.text))
 async def get_doc(message: types.Message):
-    from .assets.inline_keyboards import menu_button, cdo_site_button
-    from .assets.message_text import link_to_cdo
+    from ..assets.inline_keyboards import menu_button, cdo_site_button
+    from ..assets.message_text import link_to_cdo
     
     keyboard = types.InlineKeyboardMarkup(
         inline_keyboard=[
@@ -73,8 +72,8 @@ async def get_doc(message: types.Message):
 # Get ling to edu site
 @dp.message(MyFilter(assets.reply_keyboards.edu_site.text))
 async def get_doc(message: types.Message):
-    from .assets.inline_keyboards import menu_button, edu_site_button
-    from .assets.message_text import link_to_edu
+    from ..assets.inline_keyboards import menu_button, edu_site_button
+    from ..assets.message_text import link_to_edu
     
     keyboard = types.InlineKeyboardMarkup(
         inline_keyboard=[

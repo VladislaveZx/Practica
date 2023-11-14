@@ -1,10 +1,9 @@
-from typing import Any
 from aiogram import types, Router
 from aiogram.filters import Filter
 
-from . import assets
+from .. import assets
 
-from .app import dp
+from ..app import dp
 
 router = Router(name=__name__)
 
