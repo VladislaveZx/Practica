@@ -2,7 +2,6 @@ from aiogram import types, Router
 from aiogram.filters import Filter
 
 
-# from .database.requests import add_request, create_stud
 from ..database.requests import add_request, create_stud
 
 from ..app import dp
@@ -16,8 +15,8 @@ class MyFilter(Filter):
     async def __call__(self, message: types.Message) -> bool:
         import json
         data = json.loads(message.web_app_data.data)
-        print(data)
         return self.check_data == data['action']
+
 
 @dp.message(MyFilter(check_data="document_request"))
 async def document_request(message: types.Message):
@@ -45,12 +44,19 @@ f'''
     await message.answer(message_text)
 
 
+@dp.message(MyFilter(check_data="get_graph"))
+async def get_graph(message: types.Message):
+    import json
+    data = json.loads(message.web_app_data.data)
+    await message.answer_document(data['graph'])
+    await message.answer("График отправлен")
+
+
+
 @dp.message(MyFilter(check_data="reg_user"))
 async def reg_user(message: types.Message):
     import json
     data = json.loads(message.web_app_data.data)
-    print(data)
-    # insert new user in db
     res = await create_stud(
         user=message.from_user.id,
         studnum=data['studnum'],
@@ -64,4 +70,3 @@ async def reg_user(message: types.Message):
         message_text = "Вы уже зарегистрированы!"
     await message.answer(message_text)
         
-    
