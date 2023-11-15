@@ -74,8 +74,16 @@ class Graph(Base):
     time: Mapped[str] = mapped_column(String(30), primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
     tutor: Mapped[str] = mapped_column(String(30), primary_key=True)
+    dates: Mapped[str] = mapped_column(String(30))
     def __repr__(self):
-        return f"[studgroup={self.studgroup}, week_type={self.week_type}, day_of_week={self.day_of_week}, time={self.time}, name={self.name}, tutor={self.tutor})\n"
+        return {
+            "studgroup": self.studgroup,
+            "week_type": self.week_type,
+            "day_of_week": self.day_of_week,
+            "time": self.time,
+            "name": self.name,
+            "tutor": self.tutor
+        }
 
 
 async def async_main():

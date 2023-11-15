@@ -76,8 +76,14 @@ async def add_user(user: int, username: str, fullname: str) -> User:
 # get info about graph by studgroup, day, week_type
 async def get_graph_info(studgroup: str, day: str, week_type: str) -> list:
     async with async_session() as session:
-        result = await session.execute(select(Graph).where(Graph.studgroup == studgroup and Graph.day_of_week == day and Graph.week_type == week_type))
-        return result.scalars().all()
+        result = await session.execute(select(Graph).where(
+            Graph.studgroup == f'gr_{studgroup}' 
+            and 
+            Graph.day_of_week == day 
+            and 
+            Graph.week_type == week_type
+        ))
+        return result.scalars()
 
 
 # add info to Graph from json file
@@ -100,6 +106,7 @@ async def refresh_graph_table(file_paths: str) -> Graph:
                     week_type = lesson[2]
                     name = lesson[3]
                     tutor = lesson[4]
+                    date = lesson[5]
                     async with async_session() as session:
                         try:
                         # get or create graph
@@ -109,12 +116,13 @@ async def refresh_graph_table(file_paths: str) -> Graph:
                                 day_of_week=day,
                                 time=hour,
                                 name=name,
-                                tutor=tutor
+                                tutor=tutor,
+                                dates=date
                             )
                             session.add(graph)
                             await session.commit()
                         except IntegrityError:
-                            error_rows.append([group, week_type, day, hour, name, tutor])
+                            error_rows.append([group, week_type, day, hour, name, tutor, date])
                     count += 1
         import os   
         os.remove(file_path)

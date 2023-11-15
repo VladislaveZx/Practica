@@ -2,7 +2,7 @@ from aiogram import types, Router
 from aiogram.filters import Filter
 
 
-from ..database.requests import add_request, create_stud
+from ..database.requests import add_request, create_stud, get_graph_info
 
 from ..app import dp
 
@@ -47,10 +47,25 @@ f'''
 @dp.message(MyFilter(check_data="get_graph"))
 async def get_graph(message: types.Message):
     import json
-    data = json.loads(message.web_app_data.data)
-    await message.answer_document(data['graph'])
-    await message.answer("График отправлен")
-
+    import datetime
+    
+    from ..database.models import Graph
+    
+    data: dict = json.loads(message.web_app_data.data)
+    studgroup = data["studgroup"]
+    week_type = data["week_type"]
+    day_of_week = data["day_of_week"]
+    week = 'Знаменатель' if day_of_week == 'Знам.' else 'Числитель'
+    result = await get_graph_info(studgroup, day_of_week, week_type)
+    message_text = f'<b>Группа:</b> {studgroup}\n<b>Неделя:</b> {week}\n<b>День недели:</b> {day_of_week}\n\n'
+    for res in result:
+        res: Graph
+        date_today = f'{datetime.date.today().day}.{datetime.date.today().month}'
+        if date_today in res.dates or res.dates == "Не указано":
+            if res.studgroup.split('_')[1] == studgroup and res.week_type == week_type and res.day_of_week == day_of_week:
+                message_text += (
+                    f'<b>Время:</b> {res.time}\n<b>Дисциплина:</b> {res.name}\n<b>Преподаватель:</b> {res.tutor}\n\n')
+    await message.answer(message_text)
 
 
 @dp.message(MyFilter(check_data="reg_user"))

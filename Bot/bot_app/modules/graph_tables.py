@@ -3,12 +3,13 @@ import numpy as np
 
 
 class Lesson:
-    def __init__(self, day: str, time: str, week_type: str, name: str, tutor: str) -> None:
+    def __init__(self, day: str, time: str, week_type: str, name: str, tutor: str, date: str) -> None:
         self.day = day
         self.time = time
         self.week_type = week_type
         self.name = name
         self.tutor = tutor
+        self.date = date
 
 class Group:
     def __init__(self, numb: str, lessons_list: list):
@@ -57,14 +58,24 @@ def parse_table_graph(src_path: str):
                 week_type = lesson[2]
                 info = lesson[group_index].strip().split('\n')
                 name = info[0]
-                if not info[0].startswith("Декан ФВТ") and name != '':
+                try: 
+                    int(info[-1][0])
+                    date = info[-1]
+                except:
+                    date = "Не указано"
+                if not info[0].startswith("Декан") and name != '':
                     try:
-                        tutor = info[1]
+                        if len(info) < 4:
+                            tutor = info[1]
+                        else:
+                            tutor = info[2] + ", " + info[1]
                     except:
                         tutor = "Не указан"
                     if name in exceptions:
                         tutor = "Не указан"
-                    group_info.lessons_list.append(Lesson(day=day, time=time, week_type=week_type, name=name, tutor=tutor))
+                    group_info.lessons_list.append(Lesson(day=day, time=time, week_type=week_type, name=name, tutor=tutor, date=date))
+                    # if group == '245' and week_type == 'Знам.' and day == 'Среда':
+                    #     print(info)
         
         group = group.split(' ')[0]
         group = group.replace('.', '')
@@ -73,7 +84,7 @@ def parse_table_graph(src_path: str):
         for lesson in group_info.lessons_list:
             lesson: Lesson
             if type(lesson.week_type) != type(np.nan):
-                (data_dict[group]).append([lesson.day, lesson.time, lesson.week_type, lesson.name, lesson.tutor])
+                (data_dict[group]).append([lesson.day, lesson.time, lesson.week_type, lesson.name, lesson.tutor, lesson.date])
     return data_dict
 
 
@@ -99,3 +110,6 @@ def refresh_graphs_jsons():
         destination_paths.append(path)
     return destination_paths
 
+
+if __name__ == "__main__":
+    refresh_graphs_jsons()
